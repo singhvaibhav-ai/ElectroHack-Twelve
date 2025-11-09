@@ -20,6 +20,9 @@ body {
   border-radius: 8px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
   overflow: hidden;
+  min-height: calc(100vh - 40px);
+  display: flex;
+  flex-direction: column;
 }
 
 .header {
@@ -44,6 +47,7 @@ body {
 
 .content {
   padding: 40px;
+  flex: 1;
 }
 
 .input-section {
@@ -491,4 +495,27 @@ textarea:focus {
   margin-right: 8px;
   text-transform: capitalize;
   border: 1px solid #bdc3c7;
+}
+
+/* =========================
+   👣 FOOTER (Updated)
+   ========================= */
+.footer {
+  background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+  color: white;
+  padding: 25px 40px; /* Padding adjusted for horizontal layout */
+  border-top: 3px solid #2980b9;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; /* Helps responsiveness on small screens */
+  gap: 15px; /* Adds space if it wraps */
+}
+
+.footer p {
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  font-size: 0.95em;
+  opacity: 0.9;
 }
