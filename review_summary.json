@@ -1,0 +1,212 @@
+{
+  "overall_score": 3.66,
+  "total_reviews": 12,
+  "sentiment_distribution": {
+    "positive": 8,
+    "neutral": 2,
+    "negative": 2
+  },
+  "pros": [
+    [
+      "general: Absolutely love this product...",
+      1
+    ],
+    [
+      "quality: The quality is excellent and it arrived quickly...",
+      1
+    ],
+    [
+      "comfort: Very comfortable and easy to use...",
+      1
+    ],
+    [
+      "price: Highly recommend to anyone looking for great value...",
+      1
+    ],
+    [
+      "general: Good product overall...",
+      1
+    ],
+    [
+      "quality: The design is beautiful and build quality is solid...",
+      1
+    ],
+    [
+      "quality: Best purchase I've made in a long time...",
+      1
+    ],
+    [
+      "performance: Fast, reliable, and the customer service was outst...",
+      1
+    ],
+    [
+      "performance: Shipping was fast though...",
+      1
+    ],
+    [
+      "quality: Very durable and sturdy construction...",
+      1
+    ]
+  ],
+  "cons": [
+    [
+      "price: Poor durability and not worth the price...",
+      1
+    ],
+    [
+      "performance: Customer service was slow to respond...",
+      1
+    ],
+    [
+      "quality: The material feels a bit cheap...",
+      1
+    ],
+    [
+      "quality: Cheap materials and poor construction...",
+      1
+    ],
+    [
+      "general: Complete waste of money...",
+      1
+    ],
+    [
+      "general: Only minor issue is the packaging could be better...",
+      1
+    ],
+    [
+      "quality: The quality is poor and it feels flimsy...",
+      1
+    ],
+    [
+      "delivery: Had issues with delivery being delayed...",
+      1
+    ]
+  ],
+  "top_keywords": [
+    [
+      "quality",
+      6
+    ],
+    [
+      "product",
+      5
+    ],
+    [
+      "customer",
+      4
+    ],
+    [
+      "comfortable",
+      3
+    ],
+    [
+      "use",
+      3
+    ],
+    [
+      "good",
+      3
+    ],
+    [
+      "design",
+      3
+    ],
+    [
+      "purchase",
+      3
+    ],
+    [
+      "service",
+      3
+    ],
+    [
+      "poor",
+      3
+    ],
+    [
+      "not",
+      3
+    ],
+    [
+      "love",
+      2
+    ],
+    [
+      "excellent",
+      2
+    ],
+    [
+      "quickly",
+      2
+    ],
+    [
+      "easy",
+      2
+    ],
+    [
+      "recommend",
+      2
+    ],
+    [
+      "anyone",
+      2
+    ],
+    [
+      "value",
+      2
+    ],
+    [
+      "beautiful",
+      2
+    ],
+    [
+      "build",
+      2
+    ]
+  ],
+  "sentiment_trend": "Mostly Positive (66.7% positive)",
+  "detailed_insights": {
+    "aspect_analysis": {
+      "general": {
+        "avg_sentiment": 0.2,
+        "mention_count": 15
+      },
+      "quality": {
+        "avg_sentiment": 0.47,
+        "mention_count": 10
+      },
+      "comfort": {
+        "avg_sentiment": 1.0,
+        "mention_count": 2
+      },
+      "price": {
+        "avg_sentiment": 0.6,
+        "mention_count": 5
+      },
+      "performance": {
+        "avg_sentiment": 0.5,
+        "mention_count": 6
+      },
+      "design": {
+        "avg_sentiment": 1.0,
+        "mention_count": 2
+      },
+      "customer_service": {
+        "avg_sentiment": 0.0,
+        "mention_count": 2
+      },
+      "delivery": {
+        "avg_sentiment": 0.0,
+        "mention_count": 2
+      }
+    },
+    "rating_distribution": {
+      "1": 1,
+      "2": 2,
+      "3": 2,
+      "4": 3,
+      "5": 4
+    },
+    "average_review_length": 136.58333333333334
+  }
+}

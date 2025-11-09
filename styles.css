@@ -457,3 +457,38 @@ textarea:focus {
   color: #2c3e50;
   font-weight: 600;
 }
+
+/* =========================
+   🔄 LOADER SPINNER
+   ========================= */
+.loader {
+  border: 5px solid #f3f3f3; /* light grey */
+  border-top: 5px solid #3498db; /* accent color */
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  margin: 0 auto;
+  animation: spin 0.95s linear infinite;
+  box-shadow: 0 0 12px rgba(52, 152, 219, 0.18);
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.aspect-tag {
+  display: inline-block;
+  background: #ecf0f1;
+  color: #34495e;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 0.85em;
+  font-weight: 600;
+  margin-right: 8px;
+  text-transform: capitalize;
+  border: 1px solid #bdc3c7;
+}
