@@ -103,10 +103,6 @@ function loadSampleData() {
   alert('Sample data loaded! Click "Analyze Reviews" to see the results.');
 }
 
-// ==================================================================
-// 🚀 NEW/MODIFIED FUNCTIONS BELOW 🚀
-// ==================================================================
-
 async function analyzeReviews() {
   // 1. Collect reviews from the DOM
   const reviewInputs = document.querySelectorAll(".review-input-container");
