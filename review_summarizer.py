@@ -18,6 +18,7 @@ class ReviewSummary:
     top_keywords: List[Tuple[str, int]]  # (keyword, frequency)
     sentiment_trend: str
     detailed_insights: Dict[str, any]
+    executive_summary: str  # <-- 💡 ADDED THIS FIELD
 
 
 class ReviewSummarizer:
@@ -389,6 +390,69 @@ class ReviewSummarizer:
 
         return aspect_summary
 
+    # --- 💡 NEW FUNCTION 💡 ---
+    def _generate_executive_summary(self, summary_data: ReviewSummary) -> str:
+        """Generates a 2-3 line executive summary. Uses <b> tags for HTML bolding."""
+
+        # Start with the main sentiment trend
+        summary_text = (
+            f"The {summary_data.total_reviews} reviews show a "
+            f"<b>{summary_data.sentiment_trend.lower()}</b> sentiment, "
+            f"with an average score of <b>{summary_data.overall_score:.1f}/5.0</b>. "
+        )
+
+        # Find the most-mentioned positive and negative aspects
+        try:
+            aspects = summary_data.detailed_insights.get("aspect_analysis", {})
+
+            if aspects:
+                # Sort aspects by mention count
+                sorted_aspects = sorted(
+                    aspects.items(),
+                    key=lambda item: item[1]["mention_count"],
+                    reverse=True,
+                )
+
+                # Find top positive aspect (sentiment > 0.2)
+                top_positive_aspect = "general praise"  # default
+                for aspect, data in sorted_aspects:
+                    if data["avg_sentiment"] > 0.2:
+                        top_positive_aspect = aspect.replace("_", " ")
+                        break
+
+                # Find top negative aspect (sentiment < -0.2)
+                top_negative_aspect = ""  # default
+                for aspect, data in sorted_aspects:
+                    if data["avg_sentiment"] < -0.2:
+                        top_negative_aspect = aspect.replace("_", " ")
+                        break
+
+                # Build the second sentence
+                summary_text += (
+                    f"Customers frequently praised the <b>{top_positive_aspect}</b>. "
+                )
+                if top_negative_aspect:
+                    summary_text += f"However, some concerns were raised about <b>{top_negative_aspect}</b>."
+
+            elif summary_data.pros:
+                # Fallback if aspect analysis is empty but pros exist
+                top_pro_text = summary_data.pros[0][0].split(":", 1)[0]
+                summary_text += (
+                    f"Customers particularly loved the <b>{top_pro_text}</b>."
+                )
+
+        except (KeyError, IndexError, TypeError, RuntimeError) as e:
+            # Fallback in case aspect analysis fails
+            print(f"Error generating aspect part of summary: {e}", file=sys.stderr)
+            if summary_data.pros:
+                top_pro_text = summary_data.pros[0][0].split(":", 1)[0]
+                summary_text += (
+                    f"Customers particularly loved the <b>{top_pro_text}</b>."
+                )
+
+        return summary_text.strip()
+
+    # --- 💡 MODIFIED FUNCTION 💡 ---
     def summarize_reviews(self, reviews: List[Dict[str, any]]) -> ReviewSummary:
         """
         Main method to summarize reviews
@@ -429,9 +493,10 @@ class ReviewSummarizer:
             "average_review_length": np.mean([len(r.get("text", "")) for r in reviews]),
         }
 
-        print("Summary complete!")
+        print("Summary complete! Generating executive summary...")
 
-        return ReviewSummary(
+        # Create the initial summary object (with a temporary value)
+        summary = ReviewSummary(
             overall_score=overall_score,
             total_reviews=len(reviews),
             sentiment_distribution=sentiment_distribution,
@@ -440,7 +505,13 @@ class ReviewSummarizer:
             top_keywords=keywords,
             sentiment_trend=sentiment_trend,
             detailed_insights=detailed_insights,
+            executive_summary="",  # <-- Set as empty for now
         )
+
+        # Now, generate the exec summary using the data we just created
+        summary.executive_summary = self._generate_executive_summary(summary)
+
+        return summary  # This summary object now includes the executive_summary string
 
     def _get_rating_distribution(self, reviews: List[Dict[str, any]]) -> Dict[int, int]:
         """Get distribution of star ratings"""
@@ -457,6 +528,13 @@ class ReviewSummarizer:
         report.append("=" * 80)
         report.append("PRODUCT REVIEW SUMMARY")
         report.append("=" * 80)
+
+        # 💡 ADDED Exec Summary to report
+        report.append("\nEXECUTIVE SUMMARY:")
+        report.append(
+            re.sub(r"<b>|</b>", "", summary.executive_summary)
+        )  # Remove HTML tags for text report
+
         report.append(f"\nTotal Reviews Analyzed: {summary.total_reviews}")
         report.append(f"Overall Score: {summary.overall_score}/5.0 ⭐")
         report.append(f"Sentiment Trend: {summary.sentiment_trend}")
